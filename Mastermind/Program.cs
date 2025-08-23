@@ -20,6 +20,8 @@ namespace Mastermind
                                         "provide any help.\n\n" +
                                         "Good luck!";
 
+        private static readonly char[] ValidChars = ['1','2','3','4','5','6'];
+
         /// <summary>
         /// Represents the state of the application.
         ///
@@ -170,7 +172,7 @@ namespace Mastermind
                 {
                     return input;
                 }
-                else if (input != null && int.TryParse(input, out _) && input.Length == 4)
+                else if (input != null && IsValidCharacters(input) && input.Length == 4)
                 {
                     return input;
                 }
@@ -179,6 +181,24 @@ namespace Mastermind
                     Console.WriteLine("I couldn't understand your input. If you're confused, type 'h' for help.");
                 }
             }
+        }
+
+        /// <summary>
+        /// Verifies that 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        internal static bool IsValidCharacters(string input)
+        {
+            foreach (char c in input) 
+            {
+                if (!ValidChars.Contains(c))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         /// <summary>
