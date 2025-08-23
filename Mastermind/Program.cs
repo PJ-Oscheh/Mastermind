@@ -5,6 +5,7 @@ namespace Mastermind
 {
     internal class Program
     {
+        private const int TotalGuesses = 10;
         private const string HelpText = "HOW TO PLAY:\n" +
                                         "============\n" +
                                         "The mastermind (that's me!) will think of a number. This number:\n" +
@@ -19,6 +20,13 @@ namespace Mastermind
                                         "provide any help.\n\n" +
                                         "Good luck!";
 
+        /// <summary>
+        /// Represents the state of the application.
+        ///
+        /// Game represents the game loop.
+        /// PlayAgain represents the "play again" screen.
+        /// Quit indicates the application should exit.
+        /// </summary>
         public enum State
         {
             Game,
@@ -44,12 +52,21 @@ namespace Mastermind
             }
         }
 
-        public static State DoGameLoop(string? fixedAnswer=null)
+        /// <summary>
+        /// Represents the game loop. The loop progresses as follows:
+        ///
+        /// Ask for input. If the input is correct, go to play again screen. Otherwise,
+        /// print a hint, with a "+" for any character in a correct position and a "-" for any
+        /// character that exists in the answer but is in an incorrect position.
+        /// </summary>
+        /// <param name="fixedAnswer">Fixes answer to a certain value for testing</param>
+        /// <returns>The next state of the application (State.PlayAgain)</returns>
+        internal static State DoGameLoop(string? fixedAnswer=null)
         {
             Console.WriteLine("Welcome to Mastermind!");
             Console.WriteLine(HelpText);
 
-            int remainingGuesses = 10;
+            int remainingGuesses = TotalGuesses;
             string answer = fixedAnswer ?? GenerateAnswer();
             
             while (remainingGuesses > 0)
@@ -73,7 +90,14 @@ namespace Mastermind
             return State.PlayAgain;
         }
 
-        public static State DoPlayAgainLoop()
+        /// <summary>
+        /// Represents the play again loop. The loop progresses as follows:
+        ///
+        /// Asks the player if they want to play again. If so, go to game loop. If not, quit. If
+        /// input couldn't be understood, ask again.
+        /// </summary>
+        /// <returns>The next state of the application (State.Game or State.Quit)</returns>
+        internal static State DoPlayAgainLoop()
         {
             Console.WriteLine("Well that was fun! Want to play again? (Type 'y' for yes or 'n' for no)");
 
@@ -105,7 +129,7 @@ namespace Mastermind
         /// An answer consists of four digits ranging from 1-6, inclusive.
         /// </summary>
         /// <returns>The answer as a string</returns>
-        public static string GenerateAnswer()
+        internal static string GenerateAnswer()
         {
             Random rand = new();
             StringBuilder tmpAnswer = new();
@@ -118,7 +142,12 @@ namespace Mastermind
             return tmpAnswer.ToString();
         }
 
-        public static string GetPlayerInput()
+        /// <summary>
+        /// Gets the player's input. If the input is null, is not a valid integer, or does not have a length
+        /// of 4, then we'll ask for the input again.
+        /// </summary>
+        /// <returns>The player's input</returns>
+        internal static string GetPlayerInput()
         {
             Console.WriteLine("\nTake a guess!");
 
@@ -137,7 +166,16 @@ namespace Mastermind
             }
         }
 
-        public static string GenerateHint(string inputGuess, string answer)
+        /// <summary>
+        /// Generates a hint based on the player's input.
+        ///
+        /// If the input guess contains a correct character in a correct position, append a '+' to the guess. If it
+        /// contains a correct character in an incorrect position, append a '-' to the guess.
+        /// </summary>
+        /// <param name="inputGuess">The player's input guess</param>
+        /// <param name="answer">The correct answer</param>
+        /// <returns>The hint string</returns>
+        internal static string GenerateHint(string inputGuess, string answer)
         {
             StringBuilder tmpHint = new();
             for (int i = 0; i < inputGuess.Length; i++)
