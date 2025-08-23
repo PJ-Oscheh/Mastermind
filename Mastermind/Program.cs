@@ -44,13 +44,13 @@ namespace Mastermind
             }
         }
 
-        public static State DoGameLoop()
+        public static State DoGameLoop(string? fixedAnswer=null)
         {
             Console.WriteLine("Welcome to Mastermind!");
             Console.WriteLine(HelpText);
 
             int remainingGuesses = 10;
-            string answer = GenerateAnswer();
+            string answer = fixedAnswer ?? GenerateAnswer();
             
             while (remainingGuesses > 0)
             {
@@ -61,7 +61,11 @@ namespace Mastermind
                     string hint = GenerateHint(inputGuess, answer);
                     Console.WriteLine($"Incorrect! Here's a hint: [{hint}]");
                 }
-                // TODO: Handle success case
+                else
+                {
+                    Console.WriteLine("That's correct! Horray!");
+                    break;
+                }
                 
                 remainingGuesses--;
             }
