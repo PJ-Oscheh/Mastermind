@@ -36,17 +36,17 @@ namespace Mastermind
         
         public static void Main(string[] args)
         {
-            State currentState = State.Game;
+            State nextState = State.Game;
 
-            while (currentState != State.Quit)
+            while (nextState != State.Quit)
             {
-                switch (currentState)
+                switch (nextState)
                 {
                     case State.Game:
-                        currentState = DoGameLoop();
+                        nextState = DoGameLoop();
                         break;
                     case State.PlayAgain:
-                        currentState = DoPlayAgainLoop();
+                        nextState = DoPlayAgainLoop();
                         break;
                 }
             }
@@ -199,7 +199,12 @@ namespace Mastermind
                 {
                     tmpHint.Append('+');
                 }
-                else if (answer.Contains(inputGuess[i]))
+            }
+            
+
+            foreach(char c in inputGuess)
+            {
+                if (answer.Contains(c))
                 {
                     tmpHint.Append('-');
                 }
