@@ -25,7 +25,7 @@ namespace Mastermind
 
             int remainingGuesses = 10;
             string answer = GenerateAnswer();
-
+            
             while (remainingGuesses > 0)
             {
                 string inputGuess = GetPlayerInput();
@@ -76,7 +76,24 @@ namespace Mastermind
                     Console.WriteLine("I couldn't understand your input. If you're confused, type 'h' for help.");
                 }
             }
+        }
+
+        public static string GenerateHint(string inputGuess, string answer)
+        {
+            StringBuilder tmpHint = new();
+            for (int i = 0; i < inputGuess.Length; i++)
+            {
+                if (inputGuess[i] == answer[i])
+                {
+                    tmpHint.Append('+');
+                }
+                else if (answer.Contains(inputGuess[i]))
+                {
+                    tmpHint.Append('-');
+                }
+            }
             
+            return tmpHint.ToString();
         }
     }
 }
