@@ -71,7 +71,7 @@ namespace Mastermind
             
             while (remainingGuesses > 0)
             {
-                string inputGuess = GetPlayerInput();
+                string inputGuess = GetPlayerInput(remainingGuesses, TotalGuesses);
 
                 if (inputGuess == "h")
                 {
@@ -97,6 +97,7 @@ namespace Mastermind
                 remainingGuesses--;
             }
 
+            Console.WriteLine($"You lost :( The answer was '{answer}'");
             return State.PlayAgain;
         }
 
@@ -157,9 +158,9 @@ namespace Mastermind
         /// of 4, then we'll ask for the input again.
         /// </summary>
         /// <returns>The player's input</returns>
-        internal static string GetPlayerInput()
+        internal static string GetPlayerInput(int remainingGuesses, int totalGuesses)
         {
-            Console.WriteLine("\nTake a guess!");
+            Console.WriteLine($"\nTake a guess! ({TotalGuesses-remainingGuesses+1}/{totalGuesses})");
 
             while (true)
             {
