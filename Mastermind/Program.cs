@@ -217,14 +217,9 @@ namespace Mastermind
             {
                 if (inputGuess[i] == answer[i])
                 {
-                    tmpHint.Append('+');
+                    tmpHint.Insert(0,'+');
                 }
-            }
-            
-
-            foreach(char c in inputGuess)
-            {
-                if (answer.Contains(c))
+                else if (answer.Contains(inputGuess[i]))
                 {
                     tmpHint.Append('-');
                 }
