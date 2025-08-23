@@ -7,7 +7,18 @@ namespace Mastermind
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello world!");
+            Console.WriteLine("Welcome to Mastermind!");
+
+            int remainingGuesses = 10;
+
+            while (remainingGuesses > 0)
+            {
+                Console.WriteLine("\nTake a guess!");
+                Console.Write(">");
+                string? input = Console.ReadLine();
+                remainingGuesses--;
+            }
+            
 
             string answer = GenerateAnswer();
         }
