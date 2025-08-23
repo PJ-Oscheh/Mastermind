@@ -16,7 +16,7 @@ namespace Mastermind
                                         "After each guess, I'll give you a hint (you'll need it!) If my hint\n" +
                                         "includes a '+' character, that means a digit is in the correct location.\n" +
                                         "If it includes a '-' character, that means a digit is correct but in the\n" +
-                                        "incorrect position. If your guess contains no correct digits, I won't" +
+                                        "incorrect position. If your guess contains no correct digits, I won't " +
                                         "provide any help.\n\n" +
                                         "Good luck!";
 
@@ -72,6 +72,16 @@ namespace Mastermind
             while (remainingGuesses > 0)
             {
                 string inputGuess = GetPlayerInput();
+
+                if (inputGuess == "h")
+                {
+                    Console.WriteLine(HelpText);
+                    continue;
+                }
+                else if (inputGuess == "q")
+                {
+                    return State.Quit;
+                }
 
                 if (inputGuess != answer)
                 {
@@ -155,7 +165,11 @@ namespace Mastermind
             {
                 Console.Write(">");
                 string? input = Console.ReadLine();
-                if (input != null && int.TryParse(input, out _) && input.Length == 4)
+                if (input != null && input.ToLower() == "h" || input != null && input.ToLower() == "q")
+                {
+                    return input;
+                }
+                else if (input != null && int.TryParse(input, out _) && input.Length == 4)
                 {
                     return input;
                 }
