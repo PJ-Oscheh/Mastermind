@@ -15,10 +15,36 @@ namespace Mastermind
                                         "After each guess, I'll give you a hint (you'll need it!) If my hint\n" +
                                         "includes a '+' character, that means a digit is in the correct location.\n" +
                                         "If it includes a '-' character, that means a digit is correct but in the\n" +
-                                        "incorrect position.\n\n" +
+                                        "incorrect position. If your guess contains no correct digits, I won't" +
+                                        "provide any help.\n\n" +
                                         "Good luck!";
+
+        public enum State
+        {
+            Game,
+            PlayAgain,
+            Quit
+        }
         
         public static void Main(string[] args)
+        {
+            State currentState = State.Game;
+
+            while (currentState != State.Quit)
+            {
+                switch (currentState)
+                {
+                    case State.Game:
+                        currentState = DoGameLoop();
+                        break;
+                    case State.PlayAgain:
+                        currentState = DoPlayAgainLoop();
+                        break;
+                }
+            }
+        }
+
+        public static State DoGameLoop()
         {
             Console.WriteLine("Welcome to Mastermind!");
             Console.WriteLine(HelpText);
@@ -32,12 +58,41 @@ namespace Mastermind
 
                 if (inputGuess != answer)
                 {
-                    
+                    string hint = GenerateHint(inputGuess, answer);
+                    Console.WriteLine($"Incorrect! Here's a hint: [{hint}]");
                 }
                 // TODO: Handle success case
                 
                 remainingGuesses--;
             }
+
+            return State.PlayAgain;
+        }
+
+        public static State DoPlayAgainLoop()
+        {
+            Console.WriteLine("Well that was fun! Want to play again? (Type 'y' for yes or 'n' for no)");
+
+            while (true)
+            {
+                Console.Write(">");
+                string? input = Console.ReadLine();
+
+                if (input != null && input.ToLower() == "y")
+                {
+                    return State.Game;
+                }
+                else if (input != null && input.ToLower() == "n")
+                {
+                    return State.Quit;
+                }
+                else
+                {
+                    Console.WriteLine("Sorry, I couldn't understand your input. Please type 'Y' to play again, or " +
+                                      "'n' to quit.");
+                }
+            }
+            
         }
 
         /// <summary>
