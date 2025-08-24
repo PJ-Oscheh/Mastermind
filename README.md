@@ -32,6 +32,27 @@ much easier. In a hypothetical scenario in which this code would be adapted to a
 more complicated GUI rendition, this organization would ease that transition process
 as well.
 
+# Solution Overview
+
+## Mastermind
+
+This is the main game.
+
+## Mastermind.Tests
+
+This contains tests for the game. In particular, it tests the game's methods for
+generating a random answer (verifying answers are four digits long consisting of
+numbers from 1-6 inclusive) and for generating a hint (verifying hints consist of
+`+` characters to indicate correct digit & placement, `-` characters to indicate
+correct digit but incorrect placement, no character for incorrect digits, and that
+`+` characters appear before `-` characters.
+
+Since the answer generation test relies on random number generation, it tests the 
+generation procedure 10,000 times. The hint generation test is entirely deterministic,
+so that consists of a few unique test cases that cover a variety of guess/answer
+combinations.
+
+
 # Who's the Mastermind?
 
 I wasn't sure who the "mastermind" was supposed to be (the player? the 
