@@ -36,6 +36,10 @@ namespace Mastermind
             Quit
         }
         
+        /// <summary>
+        /// Program execution starts here
+        /// </summary>
+        /// <param name="args">Command line arguments</param>
         public static void Main(string[] args)
         {
             State nextState = State.Game;

@@ -36,7 +36,44 @@ as well.
 
 ## Mastermind
 
-This is the main game.
+This is the main game. `Program.cs` is the file of interest. My thought process for 
+organizing the game loop was that different parts of the game could be organized into
+states. Then, once that loop completes, it can return the next state the program should
+move to.
+
+For example:
+
+1. Upon starting the program, it enters the Game state.
+2. After the game completes, the program enters the "PlayAgain" state.
+   1. If the player chooses to play again, the program enters the "Game" state.
+   2. If the player chooses to exit, the program indicates the main loop should
+exit, and therefore the program should exit.
+
+The code for this is quite compact:
+
+```csharp
+/// <summary>
+/// Program execution starts here
+/// </summary>
+/// <param name="args">Command line arguments</param>
+public static void Main(string[] args)
+{
+    State nextState = State.Game;
+
+    while (nextState != State.Quit)
+    {
+        switch (nextState)
+        {
+            case State.Game:
+                nextState = DoGameLoop();
+                break;
+            case State.PlayAgain:
+                nextState = DoPlayAgainLoop();
+                break;
+        }
+    }
+}
+```
 
 ## Mastermind.Tests
 
