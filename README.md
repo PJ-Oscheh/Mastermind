@@ -113,6 +113,15 @@ combinations.
 - `GenerateAnswerTest:void` - Answer generation test
 - `GenerateHintTest:void` - Hint generation test
 
+
+# Future Improvements
+
+If this was a larger-scale project, this is how my development strategy would differ.
+I would:
+
+1. Store user-facing strings in a RESX file
+2. Break game logic into several classes 
+
 # Who's the Mastermind?
 
 I wasn't sure who the "mastermind" was supposed to be (the player? the 
