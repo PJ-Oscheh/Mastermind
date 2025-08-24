@@ -51,7 +51,7 @@ namespace Mastermind
                 switch (nextState)
                 {
                     case State.Game:
-                        nextState = DoGameLoop("1234");
+                        nextState = DoGameLoop();
                         break;
                     case State.PlayAgain:
                         nextState = DoPlayAgainLoop();
