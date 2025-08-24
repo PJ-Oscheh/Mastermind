@@ -51,7 +51,7 @@ namespace Mastermind
                 switch (nextState)
                 {
                     case State.Game:
-                        nextState = DoGameLoop();
+                        nextState = DoGameLoop("1234");
                         break;
                     case State.PlayAgain:
                         nextState = DoPlayAgainLoop();
@@ -218,16 +218,32 @@ namespace Mastermind
         /// <returns>The hint string</returns>
         internal static string GenerateHint(string inputGuess, string answer)
         {
+
+            Dictionary<char, int> digitAmounts = new();
+            
+            foreach (char c in answer)
+            {
+                if (!digitAmounts.TryAdd(c, 1))
+                {
+                    digitAmounts[c]++;
+                }
+            }
+            
             StringBuilder tmpHint = new();
             for (int i = 0; i < inputGuess.Length; i++)
             {
                 if (inputGuess[i] == answer[i])
                 {
                     tmpHint.Insert(0,'+');
+                    digitAmounts[inputGuess[i]]--;
                 }
                 else if (answer.Contains(inputGuess[i]))
                 {
-                    tmpHint.Append('-');
+                    if (digitAmounts[inputGuess[i]] > 0)
+                    {
+                        tmpHint.Append('-');
+                        digitAmounts[inputGuess[i]]--;
+                    }
                 }
             }
             
