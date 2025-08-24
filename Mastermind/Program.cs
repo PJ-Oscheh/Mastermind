@@ -13,11 +13,13 @@ namespace Mastermind
                                         "- Consists only of digits 1-6, inclusive\n\n" +
                                         "For example, a valid answer could be '1234'. An invalid answer might be " +
                                         "'12345', '7777', or 'eggs'.\n\n" +
-                                        "After each guess, I'll give you a hint (you'll need it!) If my hint\n" +
+                                        "After each guess, I'll give you a hint. (You'll need it!) If my hint\n" +
                                         "includes a '+' character, that means a digit is in the correct location.\n" +
                                         "If it includes a '-' character, that means a digit is correct but in the\n" +
                                         "incorrect position. If your guess contains no correct digits, I won't " +
                                         "provide any help.\n\n" +
+                                        "If you need to read this help screen again, type 'h'. If you want to exit " +
+                                        "the game, type 'q'.\n\n" +
                                         "Good luck!";
 
         private static readonly char[] ValidChars = ['1','2','3','4','5','6'];
@@ -97,7 +99,7 @@ namespace Mastermind
                 else
                 {
                     Console.WriteLine("That's correct! Horray!");
-                    break;
+                    return State.PlayAgain;
                 }
                 
                 remainingGuesses--;
