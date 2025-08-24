@@ -67,7 +67,7 @@ public class MastermindTest
             ("1234","1243","++--"), // 2 correct digits in correct position, 2 correct in wrong position -> "++--"
             ("3412","4312","++--"), // Same as above but two incorrect position before 2 correct position -> "++--"
             ("3412","3451", "++-"), // 2 correct digits in correct position, 1 correct in wrong position, 1 incorrect -> "++-"
-            ("4233", "1234", "++-") // Duplicate digit in incorrect position
+            ("4233", "1234", "++-") // Duplicate digit in incorrect position -> "++-"
         ];
         
         foreach (var triplet in inputAnswerHintTriplets)
