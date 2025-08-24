@@ -22,7 +22,7 @@ quit.
 
 The first thing I thought about before touching the keyboard was how to organize this
 project. For most projects of certain complexity, I opt for an object-oriented approach.
-However, since this project was a relatively simple command-line application, I opted
+However, since this project was a relatively simple command line application, I opted
 instead to follow a procedural approach, organizing the code across different methods
 in the `Program.cs` file in an effort to not "over-engineer" the code.
 
@@ -37,13 +37,13 @@ as well.
 ## Mastermind
 
 This is the main game. `Program.cs` is the file of interest. My thought process for 
-organizing the game loop was that different parts of the game could be organized into
-states. Then, once that loop completes, it can return the next state the program should
+organizing the game loop was that different parts of the program could be organized into
+states. Then, once that state's loop completes, it can return the next state the program should
 move to.
 
 For example:
 
-1. Upon starting the program, it enters the Game state.
+1. Upon starting the program, it enters the "Game" state.
 2. After the game completes, the program enters the "PlayAgain" state.
    1. If the player chooses to play again, the program enters the "Game" state.
    2. If the player chooses to exit, the program indicates the main loop should
@@ -97,18 +97,21 @@ development notes, this was to improve code legibility, testability, and maintai
 
 ## Mastermind.Tests
 
-This contains tests for the game. In particular, it tests the game's methods for
-generating a random answer (verifying answers are four digits long consisting of
-numbers from 1-6 inclusive) and for generating a hint (verifying hints consist of
-`+` characters to indicate correct digit & placement, `-` characters to indicate
-correct digit but incorrect placement, no character for incorrect digits, and that
-`+` characters appear before `-` characters.
+This contains tests for the game. The test code resides in `MastermindTest.cs`.
+In particular, it tests the game's methods for generating a random answer (verifying 
+answers are four digits long consisting of numbers from 1-6 inclusive) and for generating 
+a hint (verifying hints consist of `+` characters to indicate correct digit & placement,
+`-` characters to indicate correct digit but incorrect placement, no character for incorrect
+digits, and that `+` characters appear before `-` characters).
 
 Since the answer generation test relies on random number generation, it tests the 
 generation procedure 10,000 times. The hint generation test is entirely deterministic,
 so that consists of a few unique test cases that cover a variety of guess/answer
 combinations.
 
+### Tests
+- `GenerateAnswerTest:void` - Answer generation test
+- `GenerateHintTest:void` - Hint generation test
 
 # Who's the Mastermind?
 
