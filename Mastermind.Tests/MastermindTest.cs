@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Mastermind.Tests;
@@ -47,11 +48,17 @@ public class MastermindTest
         }
     }
     
-    
+    /// <summary>
+    /// Test to ensure hint generation is valid.
+    ///
+    /// This test will generate a hint for the test cases provided in the "inputAnswerHintTriplets" list.
+    /// In each triplet, the first item is the guess, the second is the answer, and the third is the expected
+    /// hint.
+    /// </summary>
     [TestMethod]
+    [SuppressMessage("ReSharper", "SuggestVarOrType_SimpleTypes")]
     public void GenerateHintTest()
     {
-        
         // First is input, second is answer, third is expected hint
         List<(string, string,string)> inputAnswerHintTriplets = [
             ("1234","5555",string.Empty), // No correct digits -> ""
@@ -59,12 +66,12 @@ public class MastermindTest
             ("1234","1555","+"), // 1 correct digit in correct position -> "+"
             ("1234","1243","++--"), // 2 correct digits in correct position, 2 correct in wrong position -> "++--"
             ("3412","4312","++--"), // Same as above but two incorrect position before 2 correct position -> "++--"
+            ("3412","3451", "++-") // 2 correct digits in correct position, 1 correct in wrong position, 1 incorrect -> "++-"
         ];
-
-        // ReSharper disable once SuggestVarOrType_SimpleTypes
+        
         foreach (var triplet in inputAnswerHintTriplets)
         {
-            var testHint = Program.GenerateHint(triplet.Item1, triplet.Item2);
+            string testHint = Program.GenerateHint(triplet.Item1, triplet.Item2);
             Assert.AreEqual(triplet.Item3, testHint);
         }
         
