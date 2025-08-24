@@ -135,7 +135,7 @@ namespace Mastermind
                 }
                 else
                 {
-                    Console.WriteLine("Sorry, I couldn't understand your input. Please type 'Y' to play again, or " +
+                    Console.WriteLine("Sorry, I couldn't understand your input. Please type 'y' to play again, or " +
                                       "'n' to quit.");
                 }
             }
