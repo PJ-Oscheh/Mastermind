@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Mastermind
 {
-    internal class Program
+    internal static class Program
     {
         private const int TotalGuesses = 10;
         private const string HelpText = "HOW TO PLAY:\n" +
