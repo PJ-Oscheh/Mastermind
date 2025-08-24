@@ -18,6 +18,20 @@ like wordle but with numbers.
 4. If the player guesses the number correctly, they win! If they run out of guesses, they can choose to play again or
 quit.
 
+# Development Notes
+
+The first thing I thought about before touching the keyboard was how to organize this
+project. For most projects of certain complexity, I opt for an object-oriented approach.
+However, since this project was a relatively simple command-line application, I opted
+instead to follow a procedural approach, organizing the code across different methods
+in the `Program.cs` file in an effort to not "over-engineer" the code.
+
+That being said, I still wanted to organize my code across different methods. Outside
+of making the code more legible, this organization made writing tests for the program
+much easier. In a hypothetical scenario in which this code would be adapted to a 
+more complicated GUI rendition, this organization would ease that transition process
+as well.
+
 # Who's the Mastermind?
 
 I wasn't sure who the "mastermind" was supposed to be (the player? the 
