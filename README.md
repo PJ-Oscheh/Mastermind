@@ -75,6 +75,26 @@ public static void Main(string[] args)
 }
 ```
 
+The main game loop makes calls to other methods for execution. As explained in the
+development notes, this was to improve code legibility, testability, and maintainability.
+
+### Enum
+
+- `State` - Represents the current state of the program. Consists of: 
+  - `Game` - The main game
+  - `PlayAgain` - Play again screen
+  - `Quit` - Indicates program should exit
+
+### Methods
+
+- `Main:void` - Program entrypoint
+- `DoGameLoop:State` - Game logic. Returns the next state once the loop completes
+- `DoPlayAgainLoop:State` - Loop to ask player if they want to play another round or exit the program
+- `GenerateAnswer:string` - Generates an answer that's four digits long with each digit a number from 1-6.
+- `GetPlayerInput:string` - Validates player input. They must input a valid guess number, `h` for help, or `q` to quit.
+- `IsValidCharacters:bool` - Validates that a character is between 1 and 6. Helper method for `GetPlayerInput`
+- `GenerateHint:string` - Generates a hint given the player's guess and the correct answer.
+
 ## Mastermind.Tests
 
 This contains tests for the game. In particular, it tests the game's methods for
