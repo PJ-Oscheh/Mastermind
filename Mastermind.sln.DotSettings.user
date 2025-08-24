@@ -1,0 +1,14 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:Boolean x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/ShowAdvancedOptions/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestProjectMapping/=85F28A4A_002D5CC0_002D4E75_002DA334_002D1F31AE0FFFE0/@EntryIndexedValue">Mastermind.Tests</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestTemplateMapping/=MSTest/@EntryIndexedValue">d6790ab7-33c2-4425-b2c9-51480cd1a852</s:String>
+	
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a4566b6a_002Dbdca_002D4b62_002Db7ce_002D2517f335b475/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Solution /&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=Mastermind_002FConstantStrings/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=Mastermind_002FConstantStrings/@EntryIndexRemoved">True</s:Boolean>
+	
+	
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/Initialized/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/ShowComments/@EntryValue">False</s:Boolean></wpf:ResourceDictionary>
